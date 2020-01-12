@@ -49,8 +49,8 @@ def get_users_by_tag(tag, mx=50):
 def getFollowerFromUsers(userList):
     for i in userList:
         rhtml = str(sget('https://www.instagram.com/{}/'.format(i)))
-        #matches = re.compile('"shortcode":"[a-zA-Z1-9]*"').findall(rhtml)
-        print(rhtml)
+        m = re.search('<meta content=\"(.+?) Followers', rhtml)
+        print(m)
         print("---------------------------------------------------------------------------")
         print("\n")
 
