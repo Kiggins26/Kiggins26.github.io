@@ -27,10 +27,10 @@ def cutList(followers, userList):
     return userList
 def getOptFollowerRange(price,userList):
     CONST_PRICEPERPOST = [200,1250,1600,3000,5000,240000] #upperbound
-    if CONST_PRICEPERPOST[3] > price:
-        if CONST_PRICEPERPOST[2] > price:
-            if(CONST_PRICEPERPOST[1] > price):
-                if CONST_PRICEPERPOST[0] > price:
+    if CONST_PRICEPERPOST[3] > int(price):
+        if CONST_PRICEPERPOST[2] > int(price):
+            if(CONST_PRICEPERPOST[1] > int(price)):
+                if CONST_PRICEPERPOST[0] > int(price):
                     userList = cutList(10000,userList)
                 else:
                     userList = cutList(25000,userList)

@@ -25,7 +25,7 @@ def fileOpen():
     global listLabels
     imageDest=filedialog.askopenfilename(title="Select an image")
     message = Label(text=imageDest, fg="grey").grid(row=5, columnspan=4)
-    listLabels = starter_images(imageDest)
+    listLabels = list(set(starter_images(imageDest)))
 
 def getBudget():
     global budget
@@ -86,12 +86,14 @@ def labelEdit():
         userlist.append(infoGen(listLabels1))
     print("--------------")
     print(userlist)
-    finaluserlist = []
-    for i in userlist:
-        holder = InfoPro.strToFloat(i)
-        finaluserlist.append(InfoPro.getOptFollowerRange(int(budget),holder))
-    print("--------------------------------------------")
-    print(finaluserlist)
+    print(InfoPro.getOptFollowerRange(budget, InfoPro.strToFloat(userlist[0])))
+    # finaluserlist = []
+    # for i in userlist:
+    #     print(i)
+    #     holder = InfoPro.strToFloat(i)
+    #     finaluserlist.append(InfoPro.getOptFollowerRange(int(budget),holder))
+    # print("--------------------------------------------")
+    # print(InfoPro.getOptFollowerRange(budget, InfoPro.strToFloat(finaluserlist)))
     print("Program Finished")
 
 

@@ -50,5 +50,3 @@ def infoGen(label_list):           #calls path
       #  user_list.append(user_scraper.getFollowerFromUsers(user_scraper.get_users_by_tag(i)))
 
     return user_list
-
-
