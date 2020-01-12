@@ -1,3 +1,5 @@
+#Budget stored in "budget"
+#Image source stored in "imageDest"
 from tkinter import *
 from tkinter import filedialog
 root = Tk()
