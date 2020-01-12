@@ -1,11 +1,18 @@
+#Budget stored in "budget"
+#Image source stored in "imageDest"
 from tkinter import *
 from tkinter import filedialog
 root = Tk()
 root.title("Target Market")
+<<<<<<< HEAD
 theLabel = Label(root, text="Target Market", bg="black", fg="white", font=("Arial Black", 20))
 theLabel.grid(row=0,columnspan=5)
 theLabel = Label(root, text="Get a target market for optimum advertising", bg="grey", fg="black", font=("Arial Black", 13))
 theLabel.grid(row=1,columnspan=5)
+=======
+theLabel = Label(root, text="Get a target market to advertise your products.", bg="black", fg="white")
+theLabel.grid(row=0,columnspan=3)
+>>>>>>> f22e071b2e5bedae6500120fb6716f9b1032cee9
 
 #------------------------FUNCTIONS-------------------------------------------
 def fileOpen():
