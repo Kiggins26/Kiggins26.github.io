@@ -4,7 +4,7 @@ from contextlib import closing
 from bs4 import BeautifulSoup
 import time
 import re
-
+import html
 def output(s):
     with open('test.html', 'w') as f: f.write(s)
 
@@ -22,8 +22,8 @@ def sget(url):
 
 def is_good_response(resp):
     content_type = resp.headers['Content-Type'].lower()
-    return (resp.status_code == 200 
-            and content_type is not None 
+    return (resp.status_code == 200
+            and content_type is not None
             and content_type.find('html') > -1)
 
 def search_by_tag(tag, mx=50):
@@ -46,11 +46,19 @@ def get_user_by_post(id):
 
 def get_users_by_tag(tag, mx=50):
     return [get_user_by_post(id) for id in search_by_tag(tag, mx)]
+def getFollowerFromUsers(userList):
+    userDict = {}
+    for i in userList:
+        rhtml = str(sget('https://www.instagram.com/{}/'.format(i)))
+        m = str(re.search('<meta content=\"(.+?) Followers', rhtml))
+        m = m +""
+        start = m.find("\"")
+        end = m.find("F")
+        if (start != -1) and (end != -1):
+            holder = m[int(start)+1:int(end)]
+            userDict[i]=holder
+    return userDict
 
 if __name__ == "__main__":
-    start = time.time()
     results = get_users_by_tag('ballet')
-    print(results)
-    elapsed = time.time() - start
-    print(elapsed)
-    print(str(elapsed / len(results)) + 'per user')
+    print(getFollowerFromUsers(results))
