@@ -36,11 +36,10 @@ def starter_images(imgDest):
 
             print("-----------------------------------------------------------------------------------------------------------------------------")
             return(label_list)
-
-
-starter_images("C:\\Users\\chinm\\PycharmProjects\\NwHacksTest1\\Images\\3865022_fpx.jfif")
-
-userlist= []
-for i in label_list:
-    userlist.append(getFollowerFromUsers(get_users_by_tag(i)))
-print(userlist)
+#"C:\\Users\\chinm\\PycharmProjects\\NwHacksTest1\\Images\\3865022_fpx.jfif"
+def infoGen(path):
+    starter_images(path)
+    userlist= []
+    for i in label_list:
+        userlist.append(getFollowerFromUsers(get_users_by_tag(i)))
+        return userlist
