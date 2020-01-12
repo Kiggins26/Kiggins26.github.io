@@ -1,6 +1,7 @@
 #Budget stored in "budget"
 #Image source stored in "imageDest"
 #import Starter.py
+import os
 from tkinter import *
 from tkinter import filedialog
 
@@ -86,7 +87,7 @@ def labelEdit():
         userlist.append(infoGen(listLabels1))
     print("--------------")
     print(userlist)
-    print(InfoPro.getOptFollowerRange(budget, InfoPro.strToFloat(userlist[0])))
+    finallist=InfoPro.getOptFollowerRange(budget, InfoPro.strToFloat(userlist[0]))
     # finaluserlist = []
     # for i in userlist:
     #     print(i)
@@ -94,6 +95,10 @@ def labelEdit():
     #     finaluserlist.append(InfoPro.getOptFollowerRange(int(budget),holder))
     # print("--------------------------------------------")
     # print(InfoPro.getOptFollowerRange(budget, InfoPro.strToFloat(finaluserlist)))
+    os.chdir("C:\\Users\\chinm\\OneDrive\\Desktop")
+    with open("Users.txt","w") as f:
+        for item in finallist:
+            f.write("%s\n" % item)
     print("Program Finished")
 
 
