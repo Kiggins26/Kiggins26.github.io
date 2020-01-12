@@ -1,22 +1,22 @@
 import operator
 def strToFloat(userList):
     newUserList = []
-    holderDic ={}
     for i in userList:
         for key, value in i.items():
+            holderDic = {}
             if "k" in value:
-                value = value[0:value.find("k")]
+                value = value.replace("k", "")
+                print(value)
                 holderDic[key] = (float(value)*1000)
             if "m" in value:
-                value = value[0:value.find("m")]
+                value = value.replace("m", "")
                 holderDic[key] = (float(value)*1000000)
             if "," in value:
                 value = value.replace(",", "")
                 holderDic[key] = float(value)
         newUserList.append(holderDic)
-        holderDic.clear()
     #sort the the dics
-    for i in len(newUserList):
+    for i in range(len(newUserList)):
         newUserList[i] = dict( sorted(newUserList[i].items(), key=operator.itemgetter(1),reverse=True))
     return newUserList
 def cutList(followers, userList):
@@ -32,7 +32,7 @@ def getOptFollowerRange(price,userList):
             if(CONST_PRICEPERPOST[1] > price):
                 if CONST_PRICEPERPOST[0] > price:
                     userList = cutList(10000,userList)
-                else: 
+                else:
                     userList = cutList(25000,userList)
             else:
                 userList = cutList(50000,userList)
@@ -41,3 +41,10 @@ def getOptFollowerRange(price,userList):
     else:
         userList = cutList(250000,userList)
     return userList
+
+userdict = {"test":"1.2k"}
+userdict1 = {"test":"1,000"}
+
+userlist = [userdict,userdict1]
+print(strToFloat(userlist))
+#andrew did this, he is so sexy
