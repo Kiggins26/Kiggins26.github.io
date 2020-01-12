@@ -3,6 +3,10 @@
 #import Starter.py
 from tkinter import *
 from tkinter import filedialog
+
+import user_scraper
+from Starter import infoGen, starter_images
+
 root = Tk()
 root.title("Target Market")
 root.geometry('425x500')
@@ -14,12 +18,14 @@ theLabel.grid(row=1,columnspan=5)
 
 budget=1
 imageDest="address"
-
 #------------------------FUNCTIONS-------------------------------------------
+listLabels=[]
 def fileOpen():
     global imageDest
-    imageDest=filedialog.askopenfile(title="Select an image")
+    global listLabels
+    imageDest=filedialog.askopenfilename(title="Select an image")
     message = Label(text=imageDest, fg="grey").grid(row=5, columnspan=4)
+    listLabels = starter_images(imageDest)
 
 def getBudget():
     global budget
@@ -48,7 +54,6 @@ buttonSubmit.grid(row=6, columnspan=4)
 
 #-------------------------------------------------------------------------------------------------GUI ENDS-----------------------------------------
 
-listLabels=["pop","pooop1","pop2","pop3"]
 
 labelsString=""
 labelentry = Entry(root)
@@ -70,12 +75,20 @@ def displayLabels():
     SubmitLabel.grid(row=12, columnspan=4, pady=5)
 
 labelsStringUpdated=""
+listLabels1=[]
+
 def labelEdit():
+    global labelsStringUpdated
     labelsStringUpdated=labelentry.get()
+    listLabels1=labelsStringUpdated.split(" ")
+    userlist = []
+    for i in listLabels1:
+        userlist.append(user_scraper(user_scraper.get_users_by_tag(i)))
+    print(userlist)
+
 
 # listLabelsUpdated=labelsStringUpdated.split()
 # print(listLabelsUpdated)
+# print(labelsStringUpdated)
 
 root.mainloop()
-
-

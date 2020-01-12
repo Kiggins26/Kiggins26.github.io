@@ -17,6 +17,7 @@ def starter_images(imgDest):
      #       file_name = os.path.abspath("C:\\Users\\chinm\\PycharmProjects\\NwHacksTest1\\InitalPic\\"+i)
 
             file_name=imgDest
+            print(file_name)
             with io.open(file_name, 'rb') as image_file:
                 content = image_file.read()
 
@@ -28,7 +29,7 @@ def starter_images(imgDest):
 
             for object_ in objects:
                 print(object_.name)
-                label_list.append(object_)
+                label_list.append(object_.name)
 
             print('Labels:')
             for label in labels:
@@ -41,5 +42,5 @@ def infoGen(path):
     starter_images(path)
     userlist= []
     for i in label_list:
-        userlist.append(getFollowerFromUsers(get_users_by_tag(i)))
+        userlist.append(user_scraper.getFollowerFromUsers(user_scraper.get_users_by_tag(i)))
         return userlist

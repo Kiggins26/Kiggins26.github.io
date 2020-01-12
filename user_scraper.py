@@ -34,7 +34,7 @@ def search_by_tag(tag, mx=50):
     return res
 
 def get_user_by_post(id):
-    print('id=' + id)
+   # print('id=' + id)
     rhtml = str(sget('https://www.instagram.com/p/{}/'.format(id)))
     # output(BeautifulSoup(rhtml).prettify())
     matches = re.compile(r'\(@[a-zA-Z1-9\._]+\)').search(rhtml)
@@ -46,6 +46,7 @@ def get_user_by_post(id):
 
 def get_users_by_tag(tag, mx=50):
     return [get_user_by_post(id) for id in search_by_tag(tag, mx)]
+
 def getFollowerFromUsers(userList):
     userDict = {}
     for i in userList:
@@ -59,6 +60,6 @@ def getFollowerFromUsers(userList):
             userDict[i]=holder
     return userDict
 
-if __name__ == "__main__":
-    results = get_users_by_tag('ballet')
-    print(getFollowerFromUsers(results))
+#if __name__ == "__main__":
+#    results = get_users_by_tag('hoodie')
+#    print(getFollowerFromUsers(results))
