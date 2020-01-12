@@ -22,10 +22,10 @@ def is_good_response(resp):
             and content_type is not None 
             and content_type.find('html') > -1)
 
-def search_by_tag(tag, max=50):
+def search_by_tag(tag, max=50): #grabs user tags from the tag search
     rhtml = str(sget('https://www.instagram.com/explore/tags/{}/'.format(tag)))
     matches = re.compile('"shortcode":"[a-zA-Z1-9]*"').findall(rhtml)
     res = ["https://www.instagram.com/p/" + match[13:-1] for match in matches][:max]
     return res
 
-print(search_by_tag('basketball'))
+print(search_by_tag('basketball')) # test
