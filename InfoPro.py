@@ -1,26 +1,24 @@
 import operator
 def strToFloat(userList):
     newUserList = []
+    holderDic = {}
     for i in userList:
         for x in i:
-            holderDic = {}
             print(x)
             print("\n")
             print(i.get(x))
             if "k" in i.get(x):
                 value = i.get(x).replace("k", "")
                 holderDic[x] = (float(value)*1000)
-                newUserList.append(holderDic)
             if "m" in i.get(x):
                 value = i.get(x).replace("m", "")
                 holderDic[x] = (float(value)*1000000)
-                newUserList.append(holderDic)
             if "," in i.get(x):
                 value = i.get(x).replace(",", "")
                 holderDic[x] = float(value)
-                newUserList.append(holderDic)
-            
+
     #sort the the dics
+    newUserList.append(holderDic)
     for i in range(len(newUserList)):
         newUserList[i] = dict( sorted(newUserList[i].items(), key=operator.itemgetter(1),reverse=True))
     return newUserList
