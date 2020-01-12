@@ -1,15 +1,15 @@
 #Budget stored in "budget"
 #Image source stored in "imageDest"
-import Starter.py
+#import Starter.py
 from tkinter import *
 from tkinter import filedialog
 root = Tk()
 root.title("Target Market")
-root.geometry('500x500')
+root.geometry('425x500')
 
 theLabel = Label(root, text="Target Market", bg="black", fg="white", font=("Arial Black", 20))
 theLabel.grid(row=0,column=0,columnspan=5)
-theLabel = Label(root, text="Get a target market for optimum advertising", bg="grey", fg="black", font=("Arial Black", 13))
+theLabel = Label(root, text="Get a target market for optimum advertising", bg="grey", fg="white", font=("Arial Black", 13))
 theLabel.grid(row=1,columnspan=5)
 
 budget=1
@@ -17,14 +17,17 @@ imageDest="address"
 
 #------------------------FUNCTIONS-------------------------------------------
 def fileOpen():
+    global imageDest
     imageDest=filedialog.askopenfile(title="Select an image")
     message = Label(text=imageDest, fg="grey").grid(row=5, columnspan=4)
 
 def getBudget():
+    global budget
     budget=budgetentry.get()
     message1="The program is running for the budget "+budget+"."
     message = Label(text=message1).grid(row=7, columnspan=4)
-    starter_image(imgDest)
+    displayLabels()
+    #starter_image(imgDest)
 
 #------------------------INPUT-----------------------------------------------
 budgetLabel=Label(root, text="Enter your budget in CAD")
@@ -45,11 +48,33 @@ buttonSubmit.grid(row=6, columnspan=4)
 
 #-------------------------------------------------------------------------------------------------GUI ENDS-----------------------------------------
 
+listLabels=["pop","pooop1","pop2","pop3"]
 
+labelsString=""
+labelentry = Entry(root)
+def displayLabels():
+    messageLabels = Label(root, text="The following are the labels your product is associated with:",font=("Arial", 11))
+    messageLabels.grid(row=8, columnspan=5, pady=30)
+    for i in range(listLabels.__len__()):
+        global labelsString
+        labelsString+=listLabels[i]+" ,"
+    messageLabels = Label(root, text=labelsString,font=("Arial", 11), bg="grey", fg="white")
+    messageLabels.grid(row=9, columnspan=5, pady=15)
 
+    messageLabels = Label(root, text="Enter the labels you wish to use separated by spaces", font=("Arial", 11))
+    messageLabels.grid(row=10, columnspan=5, pady=15)
 
+    labelentry.grid(row=11, column=0, columnspan=9)
 
+    SubmitLabel = Button(text="SUBMIT", bg="black", fg="white",  command=labelEdit)
+    SubmitLabel.grid(row=12, columnspan=4, pady=5)
 
+labelsStringUpdated=""
+def labelEdit():
+    labelsStringUpdated=labelentry.get()
+
+# listLabelsUpdated=labelsStringUpdated.split()
+# print(listLabelsUpdated)
 
 root.mainloop()
 
