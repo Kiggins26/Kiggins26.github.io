@@ -5,12 +5,13 @@ from tkinter import *
 from tkinter import filedialog
 
 import user_scraper
+import InfoPro
 from Starter import infoGen, starter_images
 
 root = Tk()
-root.title("Target Market")
+root.title("Influency")
 root.geometry('720x500')
-theLabel = Label(root, text="Target Market", bg="black", fg="white", font=("Arial Black", 20))
+theLabel = Label(root, text="Influency", bg="black", fg="yellow", font=("Arial Black", 20))
 theLabel.grid(row=0,column=0,columnspan=5)
 theLabel = Label(root, text="Get a target market for optimum advertising", bg="grey", fg="white", font=("Arial Black", 13))
 theLabel.grid(row=1,columnspan=5)
@@ -83,8 +84,14 @@ def labelEdit():
     userlist = [] # accounts
     for i in listLabels1:
         userlist.append(infoGen(listLabels1))
-    print("Userlist:")
+    print("--------------")
     print(userlist)
+    finaluserlist = []
+    for i in userlist:
+        holder = InfoPro.strToFloat(i)
+        finaluserlist.append(InfoPro.getOptFollowerRange(int(budget),holder))
+    print("--------------------------------------------")
+    print(finaluserlist)
     print("Program Finished")
 
 

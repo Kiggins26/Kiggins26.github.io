@@ -59,6 +59,6 @@ def getFollowerFromUsers(userList):
             userDict[i]=holder
     return userDict
 
-if __name__ == "__main__":
-    results = get_users_by_tag('ballet')
-    print(getFollowerFromUsers(results))
+#if __name__ == "__main__":
+#    results = get_users_by_tag('ballet')
+#    print(getFollowerFromUsers(results))

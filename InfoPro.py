@@ -16,9 +16,9 @@ def strToFloat(userList):
                 holderDic[key] = float(value)
         newUserList.append(holderDic)
     #sort the the dics
+
     for i in range(len(newUserList)):
         newUserList[i] = dict( sorted(newUserList[i].items(), key=operator.itemgetter(1),reverse=True))
-    return newUserList
 def cutList(followers, userList):
     for i in userList:
         for key, value in i.items():
@@ -42,9 +42,3 @@ def getOptFollowerRange(price,userList):
         userList = cutList(250000,userList)
     return userList
 
-userdict = {"test":"1.2k"}
-userdict1 = {"test":"1,000"}
-
-userlist = [userdict,userdict1]
-print(strToFloat(userlist))
-#andrew did this, he is so sexy
