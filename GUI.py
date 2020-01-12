@@ -83,7 +83,7 @@ def labelEdit():
     userlist = [] # accounts
     for i in listLabels1:
         userlist.append(infoGen(listLabels1))
-    print("aaaaaaaaaaaaas")
+    print("Userlist:")
     print(userlist)
     print("Program Finished")
 
