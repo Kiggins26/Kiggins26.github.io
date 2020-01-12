@@ -56,14 +56,7 @@ def getFollowerFromUsers(userList):
         end = m.find("F")
         if (start != -1) and (end != -1):
             holder = m[int(start)+1:int(end)]
-            if "," in holder:
-                commaplace = holder.find(",")
-                holder = holder[0:commaplace] + holder[commaplace:]
-                userDict[i]=float(holder)
-            if "k" in holder:
-                userDict[i] = (float(m[int(start)+1:int(end)-1])*1000)
-            if "m" in holder:
-                userDict[i] = (float(m[int(start)+1:int(end)-1])*1000000)
+            userDict[i]=holder
     return userDict
 
 if __name__ == "__main__":
