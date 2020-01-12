@@ -2,6 +2,7 @@ from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
+import time
 import re
 
 def output(s):
@@ -33,17 +34,23 @@ def search_by_tag(tag, mx=50):
     return res
 
 def get_user_by_post(id):
-    # print('id=' + id)
+    print('id=' + id)
     rhtml = str(sget('https://www.instagram.com/p/{}/'.format(id)))
     # output(BeautifulSoup(rhtml).prettify())
-    matches = re.compile(r'\(@[a-zA-Z1-9\.]+\)').search(rhtml)
+    matches = re.compile(r'\(@[a-zA-Z1-9\._]+\)').search(rhtml)
     if matches:
         return matches[0][2:-1]
     else:
-        return None
+        return id
     # url = 'https://www.instagram.com/' + user
 
 def get_users_by_tag(tag, mx=50):
     return [get_user_by_post(id) for id in search_by_tag(tag, mx)]
 
-print(get_users_by_tag('basketball'))
+if __name__ == "__main__":
+    start = time.time()
+    results = get_users_by_tag('ballet')
+    print(results)
+    elapsed = time.time() - start
+    print(elapsed)
+    print(str(elapsed / len(results)) + 'per user')
