@@ -1,8 +1,11 @@
 from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
-# from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 import re
+
+def output(s):
+    with open('test.html', 'w') as f: f.write(s)
 
 def sget(url):
     try:
@@ -22,10 +25,25 @@ def is_good_response(resp):
             and content_type is not None 
             and content_type.find('html') > -1)
 
-def search_by_tag(tag, max=50):
+def search_by_tag(tag, mx=50):
     rhtml = str(sget('https://www.instagram.com/explore/tags/{}/'.format(tag)))
     matches = re.compile('"shortcode":"[a-zA-Z1-9]*"').findall(rhtml)
-    res = ["https://www.instagram.com/p/" + match[13:-1] for match in matches][:max]
+    # print('https://www.instagram.com/explore/tags/{}/'.format(tag))
+    res = [match[13:-1] for match in matches]
     return res
 
-print(search_by_tag('basketball'))
+def get_user_by_post(id):
+    # print('id=' + id)
+    rhtml = str(sget('https://www.instagram.com/p/{}/'.format(id)))
+    # output(BeautifulSoup(rhtml).prettify())
+    matches = re.compile(r'\(@[a-zA-Z1-9\.]+\)').search(rhtml)
+    if matches:
+        return matches[0][2:-1]
+    else:
+        return None
+    # url = 'https://www.instagram.com/' + user
+
+def get_users_by_tag(tag, mx=50):
+    return [get_user_by_post(id) for id in search_by_tag(tag, mx)]
+
+print(get_users_by_tag('basketball'))
