@@ -47,6 +47,7 @@ def get_user_by_post(id):
 def get_users_by_tag(tag, mx=50):
     return [get_user_by_post(id) for id in search_by_tag(tag, mx)]
 def getFollowerFromUsers(userList):
+    userDict = {}
     for i in userList:
         rhtml = str(sget('https://www.instagram.com/{}/'.format(i)))
         m = str(re.search('<meta content=\"(.+?) Followers', rhtml))
@@ -54,11 +55,16 @@ def getFollowerFromUsers(userList):
         start = m.find("\"")
         end = m.find("F")
         if (start != -1) and (end != -1):
-            print(m[int(start)+1:int(end)])
-        else:
-            print("Error")
-        print("---------------------------------------------------------------------------")
-        print("\n")
+            holder = m[int(start)+1:int(end)]
+            if "," in holder:
+                commaplace = holder.find(",")
+                holder = holder[0:commaplace] + holder[commaplace:]
+                userDict[i]=float(holder)
+            if "k" in holder:
+                userDict[i] = (float(m[int(start)+1:int(end)-1])*1000)
+            if "m" in holder:
+                userDict[i] = (float(m[int(start)+1:int(end)-1])*1000000)
+    return userDict
 
 if __name__ == "__main__":
     results = get_users_by_tag('ballet')
