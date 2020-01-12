@@ -10,13 +10,16 @@ def strToFloat(userList):
             if "k" in i.get(x):
                 value = i.get(x).replace("k", "")
                 holderDic[x] = (float(value)*1000)
+                newUserList.append(holderDic)
             if "m" in i.get(x):
                 value = i.get(x).replace("m", "")
                 holderDic[x] = (float(value)*1000000)
+                newUserList.append(holderDic)
             if "," in i.get(x):
                 value = i.get(x).replace(",", "")
                 holderDic[x] = float(value)
-        newUserList.append(holderDic)
+                newUserList.append(holderDic)
+            
     #sort the the dics
     for i in range(len(newUserList)):
         newUserList[i] = dict( sorted(newUserList[i].items(), key=operator.itemgetter(1),reverse=True))
