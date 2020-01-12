@@ -4,7 +4,7 @@ from contextlib import closing
 from bs4 import BeautifulSoup
 import time
 import re
-
+import html
 def output(s):
     with open('test.html', 'w') as f: f.write(s)
 
@@ -49,8 +49,14 @@ def get_users_by_tag(tag, mx=50):
 def getFollowerFromUsers(userList):
     for i in userList:
         rhtml = str(sget('https://www.instagram.com/{}/'.format(i)))
-        m = re.search('<meta content=\"(.+?) Followers', rhtml)
-        print(m)
+        m = str(re.search('<meta content=\"(.+?) Followers', rhtml))
+        m = m +""
+        start = m.find("\"")
+        end = m.find("F")
+        if (start != -1) and (end != -1):
+            print(m[int(start)+1:int(end)])
+        else:
+            print("Error")
         print("---------------------------------------------------------------------------")
         print("\n")
 
