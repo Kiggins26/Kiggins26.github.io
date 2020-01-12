@@ -95,7 +95,7 @@ def labelEdit():
     #     finaluserlist.append(InfoPro.getOptFollowerRange(int(budget),holder))
     # print("--------------------------------------------")
     # print(InfoPro.getOptFollowerRange(budget, InfoPro.strToFloat(finaluserlist)))
-    os.chdir("C:\\Users\\chinm\\OneDrive\\Desktop")
+    # os.chdir("C:\\Users\\chinm\\OneDrive\\Desktop")
     with open("Users.txt","w") as f:
         for item in finallist:
             f.write("%s\n" % item)
