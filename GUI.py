@@ -9,8 +9,7 @@ from Starter import infoGen, starter_images
 
 root = Tk()
 root.title("Target Market")
-root.geometry('425x500')
-
+root.geometry('720x500')
 theLabel = Label(root, text="Target Market", bg="black", fg="white", font=("Arial Black", 20))
 theLabel.grid(row=0,column=0,columnspan=5)
 theLabel = Label(root, text="Get a target market for optimum advertising", bg="grey", fg="white", font=("Arial Black", 13))
@@ -81,10 +80,12 @@ def labelEdit():
     global labelsStringUpdated
     labelsStringUpdated=labelentry.get()
     listLabels1=labelsStringUpdated.split(" ")
-    userlist = []
+    userlist = [] # accounts
     for i in listLabels1:
-        userlist.append(user_scraper(user_scraper.get_users_by_tag(i)))
+        userlist.append(infoGen(listLabels1))
+    print("aaaaaaaaaaaaas")
     print(userlist)
+    print("Program Finished")
 
 
 # listLabelsUpdated=labelsStringUpdated.split()

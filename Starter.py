@@ -5,6 +5,8 @@ from google.cloud import vision
 from google.cloud.vision import types
 import user_scraper
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:\\Users\\chinm\\PycharmProjects\\NwHacksTest1\\vision.json"
+label_list = []
+
 def starter_images(imgDest):
             client = vision.ImageAnnotatorClient()
 
@@ -15,6 +17,7 @@ def starter_images(imgDest):
      #       file_name = os.path.abspath("C:\\Users\\chinm\\PycharmProjects\\NwHacksTest1\\InitalPic\\"+i)
 
             file_name=imgDest
+            print(file_name)
             with io.open(file_name, 'rb') as image_file:
                 content = image_file.read()
 
@@ -26,17 +29,21 @@ def starter_images(imgDest):
 
             for object_ in objects:
                 print(object_.name)
-                label_list.append(object_)
+                label_list.append(object_.name)
 
             print('Labels:')
             for label in labels:
+                print("Label starter "+ label.description)
                 label_list.append(label.description)
 
+
             print("-----------------------------------------------------------------------------------------------------------------------------")
-            return label_list
+            return(label_list)
 #"C:\\Users\\chinm\\PycharmProjects\\NwHacksTest1\\Images\\3865022_fpx.jfif"
-def infoGen(AttList):
-    userlist = {}
-    for i in AttList:
-        userlist.append(getFollowerFromUsers(get_users_by_tag(i)))
-    return userlist
+
+def infoGen(userlist):           #calls path
+  #  userlist= starter_images(path)
+    for i in userlist:
+        userlist.append(user_scraper.getFollowerFromUsers(user_scraper.get_users_by_tag(i)))
+        return userlist
+
